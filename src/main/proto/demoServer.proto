@@ -8,13 +8,19 @@ option objc_class_prefix = "HLW";
 package com.example;
 
 service DemoServerService {
-  rpc send (DemoServerRequest) returns (DemoServerReply) {}
+  rpc saveUser (SaveUserRequest) returns (UserResponse) {}
+  rpc saveUserStream (stream SaveUserRequest) returns (stream UserResponse) {}
 }
 
-message DemoServerRequest {
+message SaveUserRequest {
   string name = 1;
+  string lastName = 2;
+  string document = 3;
+
 }
 
-message DemoServerReply {
-  string message = 1;
+message UserResponse {
+  int32 id = 1;
+  string name = 2;
+  string lastName = 3;
 }
